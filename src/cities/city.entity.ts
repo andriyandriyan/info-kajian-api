@@ -1,9 +1,11 @@
+import { Mosque } from 'src/mosques/mosque.entity';
 import { Province } from 'src/provinces/province.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -26,4 +28,7 @@ export class City {
   @ManyToOne(() => Province, province => province.cities)
   @JoinColumn({ name: 'province_id' })
   province: Province;
+
+  @OneToMany(() => Mosque, mosque => mosque.city)
+  mosques: Mosque[];
 }
