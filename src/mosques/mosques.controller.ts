@@ -8,16 +8,16 @@ import {
   Delete,
 } from '@nestjs/common';
 import { MosquesService } from './mosques.service';
-import { CreateMosqueDto } from './dto/create-mosque.dto';
-import { UpdateMosqueDto } from './dto/update-mosque.dto';
+import { MosqueDto } from './mosque.dto';
 
 @Controller('mosques')
 export class MosquesController {
   constructor(private readonly mosquesService: MosquesService) {}
 
   @Post()
-  create(@Body() createMosqueDto: CreateMosqueDto) {
-    return this.mosquesService.create(createMosqueDto);
+  create(@Body() mosqueDto: MosqueDto) {
+    console.log({ mosqueDto });
+    return this.mosquesService.create(mosqueDto);
   }
 
   @Get()
@@ -31,8 +31,8 @@ export class MosquesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMosqueDto: UpdateMosqueDto) {
-    return this.mosquesService.update(+id, updateMosqueDto);
+  update(@Param('id') id: string, @Body() mosqueDto: MosqueDto) {
+    return this.mosquesService.update(+id, mosqueDto);
   }
 
   @Delete(':id')

@@ -22,7 +22,10 @@ export class Mosque {
   lat: number;
 
   @Column({ type: 'decimal', precision: 9, scale: 6 })
-  long: number;
+  lng: number;
+
+  @Column()
+  city_id: number;
 
   @ManyToOne(() => City, city => city.mosques)
   @JoinColumn({ name: 'city_id' })
